@@ -199,7 +199,13 @@ func main() {
 
 	app := fiber.New()
 
-	app.Use(cors.New())
+	corsConfig := cors.Config{
+		AllowOrigins: "*",
+		AllowMethods: "GET,POST,PUT,DELETE",
+		AllowHeaders: "Origin, Content-Type, Accept",
+	}
+	app.Use(cors.New(corsConfig))
+
 	app.Use(logger.New())
 
 	// Rutas
