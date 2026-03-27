@@ -199,7 +199,12 @@ func main() {
 
 	app := fiber.New()
 
-	app.Use(cors.New())
+	corsConfig := cors.Config{
+		AllowOrigins: "*",
+		AllowMethods: "GET,POST,PUT,DELETE",
+		AllowHeaders: "Origin, Content-Type, Accept",
+	}
+	app.Use(cors.New(corsConfig))
 	app.Use(logger.New())
 
 	// Rutas
@@ -215,6 +220,7 @@ func main() {
 	if port == "" {
 		port = "Port"
 	}
-
+	fmt.Println("Servidor corriendo en http://localhost:" + port + "/api/servicios")
 	log.Fatal(app.Listen("localhost" + port))
+
 }
