@@ -205,6 +205,7 @@ func main() {
 		AllowHeaders: "Origin, Content-Type, Accept",
 	}
 	app.Use(cors.New(corsConfig))
+
 	app.Use(logger.New())
 
 	// Rutas
